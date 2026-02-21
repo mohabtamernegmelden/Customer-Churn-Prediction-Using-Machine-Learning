@@ -430,6 +430,21 @@ def main():
     }
 
     if st.button('🔮  Run Prediction'):
+
+        if MonthlyCharges <= 0:
+            st.error("Monthly Charges must be greater than 0.")
+            return
+
+        if TotalCharges <= 0:
+            st.error("Total Charges must be greater than 0.")
+            return
+
+        if tenure > 0 and TotalCharges < MonthlyCharges:
+            st.warning(
+                "Total charges seem inconsistent with tenure and monthly charges. "
+                "Please verify the values."
+            )
+
         prediction(input_data)
 
 if __name__ == '__main__':
